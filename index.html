@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PatitoFix — Sistema de gestión para talleres mecánicos</title>
+  <meta name="description" content="PatitoFix: el sistema integral para talleres mecánicos que reemplaza el papel, agiliza tus presupuestos y evita discusiones con los clientes." />
+  <meta name="theme-color" content="#03060C" />
+  <link rel="icon" href="./assets/PatitoFix_Icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="duck-fallback" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="28" fill="#071124" stroke="#0066FF" stroke-width="2"/>
+    <circle cx="32" cy="34" r="14" fill="#FFB800"/>
+    <path d="M18 24 Q32 8 46 24 Z" fill="#0066FF"/>
+    <path d="M30 36 h18 q-2 8 -18 4 z" fill="#FF6B00"/>
+    <circle cx="34" cy="30" r="2.5" fill="#03060C"/>
+  </symbol>
+</svg>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav-wrap">
+  <div class="nav glass">
+    <a href="#top" class="brand" aria-label="PatitoFix inicio">
+      <img src="./assets/PatitoFix_Icon.png" alt="" width="38" height="38" data-fallback="nav-fb" />
+      <svg class="logo-fallback" id="nav-fb" width="38" height="38"><use href="#duck-fallback"/></svg>
+      <span class="brand-text">Patito<b>Fix</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#problema">El problema</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#precios">Precios</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <div class="nav-right">
+      <div class="status"><span class="dot"></span>Sistema Online</div>
+      <a href="#precios" class="btn btn-white">Prueba Gratuita <span class="arrow"><i data-lucide="arrow-up-right" width="18"></i></span></a>
+      <button class="burger" id="burger" aria-label="Abrir menú"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu glass" id="mobile-menu">
+  <a href="#problema">El problema</a><a href="#modulos">Módulos</a><a href="#precios">Precios</a><a href="#faq">Preguntas</a>
+</div>
+
+<main id="top">
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <h1 class="hero-logo" data-hero>
+      <img src="./assets/NuevoLogo_Dark.png" alt="PatitoFix — Gestión Integral para Talleres Automotrices" width="1024" height="682" data-fallback="hero-fb" />
+      <span class="logo-fallback hero-fb-text" id="hero-fb">Patito<b>Fix</b></span>
+    </h1>
+    <p class="hero-tag" data-hero>El sistema integral para <span class="grad">tu taller mecánico.</span></p>
+    <p class="hero-desc" data-hero>Digitalizá tus presupuestos, blindá tu taller con checklists de recepción 360°, controlá repuestos y avisale automáticamente a tus clientes cuando su vehículo esté listo.</p>
+    <div class="cta-row" data-hero>
+      <a href="#precios" class="btn btn-primary">Comenzar Prueba Gratuita <span class="arrow"><i data-lucide="arrow-up-right" width="22"></i></span></a>
+      <a href="#demo" class="btn btn-ghost"><i data-lucide="play-circle" width="18"></i> Ver Demo / Agendar Demo</a>
+    </div>
+    <ul class="trust" data-hero>
+      <li>✓ Sin contratos forzosos</li><li>✓ Listo para usar en 5 minutos</li><li>✓ Soporte técnico directo</li>
+    </ul>
+  </div>
+  <div class="scroll-hint"><span></span>SCROLL</div>
+</section>
+
+<!-- Mockup: dashboard en notebook + checklist en teléfono -->
+<section id="demo" class="sec-pad" style="padding-top:20px">
+  <div class="container">
+    <div class="center reveal">
+      <h2 class="sec-title">Tu taller completo, en PC, tablet o celular</h2>
+      <p class="sec-lead">Entrá, creá una orden en 30 segundos y que el cliente reciba un PDF prolijo. Sin formularios infinitos ni capacitaciones eternas.</p>
+    </div>
+
+    <div class="dash-persp">
+      <div class="dash-3d" id="dash3d">
+        <div class="dash-window" id="dash-tilt" data-tilt data-tilt-max="2" data-tilt-glare data-tilt-max-glare="0.08" data-tilt-scale="1.0">
+          <div class="dash-bar"><i></i><i></i><i></i><span class="dash-url">app.patitofix.com / dashboard</span></div>
+          <div class="dash-body">
+            <div class="role-switch" role="tablist" aria-label="Vista del panel">
+              <button class="role-btn active" data-role="dueno" role="tab">Dueño</button>
+              <button class="role-btn" data-role="mecanico" role="tab">Mecánico</button>
+              <button class="role-btn" data-role="recepcion" role="tab">Recepción</button>
+            </div>
+            <div class="kpis">
+              <div class="kpi"><small><i data-lucide="car" width="14"></i>Autos en curso</small><strong data-count="14">0</strong></div>
+              <div class="kpi"><small><i data-lucide="check-circle-2" width="14"></i>Órdenes finalizadas</small><strong data-count="8">0</strong></div>
+              <div class="kpi good"><small><i data-lucide="banknote" width="14"></i>Ingresos de hoy</small><strong><span data-count="482" data-prefix="$ " data-suffix=" mil">0</span></strong></div>
+              <div class="kpi warn"><small><i data-lucide="alert-triangle" width="14"></i>Alertas pendientes</small><strong data-count="2">0</strong></div>
+            </div>
+            <div class="widgets" id="widgets"></div>
+          </div>
+        </div>
+        <!-- Teléfono con checklist -->
+        <div class="phone" aria-hidden="true">
+          <div class="phone-notch"></div>
+          <h5>Checklist de recepción</h5>
+          <small>AB 123 CD · Ford Ranger</small>
+          <div class="ck on"><i data-lucide="check" width="13"></i>Exterior</div>
+          <div class="ck on"><i data-lucide="check" width="13"></i>Motor & Fluidos</div>
+          <div class="ck on"><i data-lucide="check" width="13"></i>Habitáculo</div>
+          <div class="ck"><i data-lucide="loader" width="13"></i>Tren rodante</div>
+          <div class="phone-btn">Firmar ingreso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. PROBLEMA vs SOLUCIÓN ============ -->
+<section id="problema" class="sec-pad">
+  <div class="container">
+    <div class="center reveal">
+      <h2 class="sec-title">¿Te suena alguno de estos problemas?</h2>
+      <p class="sec-lead">PatitoFix nace de la experiencia real de un taller familiar: diseñado para el foso y el mostrador, no para una oficina.</p>
+    </div>
+    <div class="versus">
+      <div class="vs-col bad glass reveal">
+        <h3><i data-lucide="x-circle"></i> El taller tradicional</h3>
+        <ul>
+          <li>El cementerio de papeles y WhatsApps: presupuestos con grasa que se pierden y se cobran mal.</li>
+          <li>"Ese raspón no estaba cuando lo dejé": discusiones por el estado de entrega.</li>
+          <li>Repuestos que nadie anota y nunca se cobran, o estantes vacíos en medio de un trabajo.</li>
+          <li>Llamadas una por una: "¿está listo mi auto?" y el taller lleno de autos terminados.</li>
+          <li>Tarifas desactualizadas: días para ajustar la mano de obra ante cada aumento.</li>
+        </ul>
+      </div>
+      <div class="vs-col good glass reveal">
+        <h3><i data-lucide="check-circle-2"></i> Con PatitoFix</h3>
+        <ul>
+          <li>Presupuestos en PDF al instante, con tu logo y datos.</li>
+          <li>Checklist de ingreso firmado: el estado real del auto, registrado antes de tocar una tuerca.</li>
+          <li>Control de stock con alerta de mínimo: ningún repuesto sin cobrar.</li>
+          <li>Aviso automático por email cuando el auto está terminado.</li>
+          <li>Tarifario actualizado en segundos con un CSV y balance de ingresos diario.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MÓDULOS (bloques alternados) ============ -->
+<section id="modulos" class="sec-pad">
+  <div class="container">
+    <div class="center reveal">
+      <h2 class="sec-title">Todo lo que tu taller necesita,<br/>nada de lo que no</h2>
+    </div>
+
+    <!-- 1 -->
+    <div class="feature reveal">
+      <div class="f-text">
+        <div class="icon-box y"><i data-lucide="file-text"></i></div>
+        <h3>Cotizador ágil y presupuestos en PDF</h3>
+        <p>Armá presupuestos con mano de obra y repuestos en 2 minutos y descargalos en un PDF limpio con el logo y los datos de tu taller.</p>
+        <p class="benefit">Cotizá en segundos y cerrá trabajos con presupuestos profesionales que transmiten seriedad y confianza.</p>
+      </div>
+      <div class="f-visual glass" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.06">
+        <div class="mock-title">Presupuesto #P-0881 <span class="tag y">Borrador</span></div>
+        <div class="row"><span>Cambio de pastillas (M.O.)<small>1,5 h</small></span><b>$ 45.000</b></div>
+        <div class="row"><span>Pastillas Brembo<small>SKU PB-220 · x1</small></span><b>$ 62.500</b></div>
+        <div class="row"><span>Rectificado de discos<small>M.O.</small></span><b>$ 28.000</b></div>
+        <div class="row total"><span>Total</span><b>$ 135.500</b></div>
+        <div class="mock-btn"><i data-lucide="download" width="16"></i> Descargar PDF</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="feature rev reveal">
+      <div class="f-text">
+        <div class="icon-box"><i data-lucide="clipboard-check"></i></div>
+        <h3>Checklist de inspección 360°</h3>
+        <p>Chequeo rápido de 4 áreas clave al ingresar el vehículo: Exterior, Motor & Fluidos, Habitáculo y Tren rodante / bajo chasis.</p>
+        <p class="benefit">Blindá tu taller contra reclamos injustos. Registrá el estado real del auto antes de tocar una tuerca.</p>
+      </div>
+      <div class="f-visual glass" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.06">
+        <div class="ck-grid">
+          <div><h6>Exterior</h6><span>Limpiaparabrisas</span><span>Luces</span><span>Puertas / cerraduras</span></div>
+          <div><h6>Motor & Fluidos</h6><span>Aceite y filtros</span><span>Correas</span><span>Batería</span></div>
+          <div><h6>Habitáculo</h6><span>Bocina</span><span>Aire / calefacción</span><span>Freno de mano · tablero</span></div>
+          <div><h6>Tren rodante</h6><span>Neumáticos y fuelles</span><span>Pérdidas · escape</span><span>Suspensión</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="feature reveal">
+      <div class="f-text">
+        <div class="icon-box y"><i data-lucide="mail-check"></i></div>
+        <h3>Aviso automático al cliente</h3>
+        <p>En cuanto el mecánico marca la orden como "Finalizada", el sistema le envía un email al dueño avisándole que ya puede retirar su vehículo.</p>
+        <p class="benefit">Liberá espacio en el taller sin gastar tiempo en llamadas. El cliente sabe al instante cuándo su auto está listo.</p>
+      </div>
+      <div class="f-visual glass" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.06">
+        <div class="mail">
+          <small>De: Taller Los Hermanos · Para: cliente@correo.com</small>
+          <h5>🚗 ¡Tu vehículo ya está listo!</h5>
+          <p>Hola Martín, tu Ford Ranger (AB 123 CD) ya está terminado. Podés pasar a retirarlo en nuestro horario de atención.</p>
+          <div class="tag g">Enviado automáticamente</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="feature rev reveal">
+      <div class="f-text">
+        <div class="icon-box"><i data-lucide="bell-ring"></i></div>
+        <h3>Alertas de service por kilometraje</h3>
+        <p>El sistema detecta qué vehículos están a 1.000 km de su próximo service o con el kilometraje ya vencido.</p>
+        <p class="benefit">Generá trabajo proactivo: contactá a tus clientes justo cuando les toca el cambio de aceite o distribución, antes de que se vayan a la competencia.</p>
+      </div>
+      <div class="f-visual glass" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.06">
+        <div class="mock-title">Próximos services</div>
+        <div class="row"><span>AB 123 CD · Ranger<small>Service 90.000 km · actual 89.400</small></span><span class="tag y">A 600 km</span></div>
+        <div class="row"><span>AC 456 EF · Hilux<small>Distribución 120.000 km · actual 121.800</small></span><span class="tag o">Vencido</span></div>
+        <div class="row"><span>AA 789 GH · Gol Trend<small>Aceite 60.000 km · actual 59.100</small></span><span class="tag y">A 900 km</span></div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="feature reveal">
+      <div class="f-text">
+        <div class="icon-box y"><i data-lucide="package-search"></i></div>
+        <h3>Inventario de repuestos y carga masiva por CSV</h3>
+        <p>Registro con SKU, stock, costo y precio de venta, con alerta de stock mínimo. ¿Aumentaron los costos? Subí un Excel/CSV y actualizá todo tu tarifario de una vez.</p>
+        <p class="benefit">Nunca más un trabajo frenado por falta de repuestos. Actualizá todo tu tarifario en 3 segundos, sin cargar servicio por servicio.</p>
+      </div>
+      <div class="f-visual glass" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.06">
+        <div class="mock-title">Repuestos</div>
+        <div class="row"><span>Filtro de aceite<small>SKU FA-102</small></span><span class="tag g">Stock 24</span></div>
+        <div class="row"><span>Aceite 10W40 (lt)<small>SKU AC-1040</small></span><span class="tag o">Stock 3 · mínimo</span></div>
+        <div class="row"><span>Pastillas Brembo<small>SKU PB-220</small></span><span class="tag g">Stock 9</span></div>
+        <div class="dropzone"><i data-lucide="upload-cloud"></i> Arrastrá tu tarifario.csv — 482 precios actualizados</div>
+      </div>
+    </div>
+
+    <!-- Extras -->
+    <div class="extras">
+      <article class="card reveal"><div class="icon-box"><i data-lucide="history"></i></div><h3>Historial clínico por patente</h3><p>La ficha médica completa del auto apenas entra: services, dueños, kilometraje y piezas cambiadas.</p></article>
+      <article class="card reveal"><div class="icon-box y"><i data-lucide="line-chart"></i></div><h3>Dashboard financiero y operativo</h3><p>Facturación de los últimos 5 días, autos en curso, órdenes finalizadas y alertas pendientes.</p></article>
+      <article class="card reveal"><div class="icon-box"><i data-lucide="users"></i></div><h3>Gestión de equipo</h3><p>Cuentas independientes para tus mecánicos, con roles, sin acceso a la configuración contable.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRECIOS ============ -->
+<section id="precios" class="sec-pad">
+  <div class="container center">
+    <div class="reveal">
+      <h2 class="sec-title">Elegí el plan para tu taller</h2>
+      <p class="sec-lead">Sin contratos de permanencia. Cancelás cuando quieras desde tu panel.</p>
+      <div class="toggle glass" role="group" aria-label="Periodo de facturación">
+        <button class="active" data-period="monthly">Mensual</button>
+        <button data-period="yearly">Anual <span class="off">Ahorrá 20%</span></button>
+      </div>
+    </div>
+    <div class="plans two" style="text-align:left">
+      <article class="plan glass reveal">
+        <h3>Plan BASE</h3>
+        <p class="sub">Ideal para talleres mecánicos que inician su proceso de digitalización.</p>
+        <div class="price">$<span data-price="19">19</span><small>/mes</small></div>
+        <div class="price-note" data-note>Facturado mensualmente</div>
+        <ul>
+          <li><i data-lucide="check"></i>Gestión completa de Clientes y Vehículos</li>
+          <li><i data-lucide="check"></i>Historial de reparaciones</li>
+          <li><i data-lucide="check"></i>Cotizador ágil y presupuestos en PDF</li>
+          <li><i data-lucide="check"></i>Alertas de service por KM</li>
+          <li><i data-lucide="check"></i>Soporte estándar por email</li>
+        </ul>
+        <a href="#" class="btn btn-ghost" style="justify-content:center">Probar Plan BASE</a>
+      </article>
+      <article class="plan featured glass reveal">
+        <span class="badge">MÁS ELEGIDO · RECOMENDADO</span>
+        <h3>Plan PRO</h3>
+        <p class="sub">Ideal para talleres consolidados que necesitan control total del negocio y mecánicos a cargo.</p>
+        <div class="price">$<span data-price="39">39</span><small>/mes</small></div>
+        <div class="price-note" data-note>Facturado mensualmente</div>
+        <ul>
+          <li><i data-lucide="check"></i>Todo lo del Plan BASE</li>
+          <li><i data-lucide="check"></i>Módulo completo de Inventario de Repuestos</li>
+          <li><i data-lucide="check"></i>Alertas de stock crítico</li>
+          <li><i data-lucide="check"></i>Gestión de Equipo: usuarios mecánicos y roles</li>
+          <li><i data-lucide="check"></i>Importación masiva de tarifas por CSV</li>
+          <li><i data-lucide="check"></i>Soporte prioritario VIP</li>
+        </ul>
+        <div class="mp"><i data-lucide="credit-card" width="16"></i> Acreditación inmediata con Mercado Pago: crédito, débito y dinero en cuenta</div>
+        <a href="#" class="btn btn-primary" style="justify-content:space-between;width:100%">Probar Plan PRO <span class="arrow"><i data-lucide="arrow-up-right" width="22"></i></span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. SEGURIDAD ============ -->
+<section id="seguridad" class="sec-pad">
+  <div class="container">
+    <div class="center reveal">
+      <h2 class="sec-title">Tu información, protegida</h2>
+    </div>
+    <div class="sec-grid">
+      <article class="card reveal" data-tilt data-tilt-max="6" data-tilt-speed="600">
+        <div class="icon-box y"><i data-lucide="shield-check"></i></div>
+        <h3>Tus datos son 100% tuyos y de tu taller</h3>
+        <p>Sistema multi-tenant con aislamiento estricto de base de datos. Nadie fuera de tu equipo puede ver tus clientes, precios ni facturación.</p>
+      </article>
+      <article class="card reveal" data-tilt data-tilt-max="6" data-tilt-speed="600">
+        <div class="icon-box"><i data-lucide="cloud-lightning"></i></div>
+        <h3>Disponible 24/7 en la nube</h3>
+        <p>Accedé desde la computadora de la oficina, una tablet en el taller o tu teléfono mientras comprás repuestos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. FAQ ============ -->
+<section id="faq" class="sec-pad">
+  <div class="container" style="max-width:860px">
+    <div class="center reveal">
+      <h2 class="sec-title">Todo lo que querés saber</h2>
+    </div>
+    <div class="faq">
+      <details class="glass reveal"><summary>¿Necesito instalar algún programa en mi computadora?<i data-lucide="plus"></i></summary><p>No. Es 100% web en la nube. Solo abrís el navegador desde cualquier PC, tablet o celular y ya podés trabajar.</p></details>
+      <details class="glass reveal"><summary>¿Es difícil cargar mis servicios si tengo muchos precios?<i data-lucide="plus"></i></summary><p>Para nada. Contás con la herramienta de importación masiva por archivo CSV: subís tu archivo y todo tu catálogo de mano de obra se actualiza en 1 segundo.</p></details>
+      <details class="glass reveal"><summary>¿Qué pasa si tengo varios mecánicos trabajando?<i data-lucide="plus"></i></summary><p>En el Plan PRO podés crear cuentas independientes para tu equipo de mecánicos, asignándoles trabajos sin que tengan acceso a la configuración contable o del negocio.</p></details>
+      <details class="glass reveal"><summary>¿Cómo le llega el aviso al cliente?<i data-lucide="plus"></i></summary><p>Cuando cambiás el estado de la orden de trabajo a "Finalizado", el sistema envía automáticamente un correo electrónico con el detalle y aviso de retiro a la casilla del cliente.</p></details>
+      <details class="glass reveal"><summary>¿Puedo cancelar cuando quiera?<i data-lucide="plus"></i></summary><p>Sí, no hay contratos de permanencia. Podés gestionar tu suscripción directamente desde el panel con Mercado Pago.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. CTA FINAL ============ -->
+<section class="final">
+  <h2 class="reveal">Modernizá la administración de tu taller <span>hoy mismo.</span></h2>
+  <p class="final-sub reveal">Sumate a los talleres mecánicos que ahorran horas de administración y entregan más autos por semana.</p>
+  <a href="#precios" class="btn btn-primary reveal">Empezar Prueba Gratuita Ahora <span class="arrow"><i data-lucide="arrow-up-right" width="22"></i></span></a>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <a href="#top" class="brand" aria-label="PatitoFix">
+      <img src="./assets/NuevoLogo_Dark.png" alt="PatitoFix — Gestión Integral para Talleres Automotrices" height="56" style="height:56px;width:auto" data-fallback="foot-fb" />
+      <span class="logo-fallback brand-text" id="foot-fb">Patito<b>Fix</b></span>
+    </a>
+    <nav aria-label="Legal"><a href="#">Términos</a><a href="#">Privacidad</a><a href="#">Contacto</a></nav>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><i data-lucide="instagram" width="16"></i></a>
+      <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" width="16"></i></a>
+      <a href="#" aria-label="YouTube"><i data-lucide="youtube" width="16"></i></a>
+    </div>
+    <div>© <span id="year"></span> PatitoFix. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="./main.js"></script>
+</body>
+</html>
