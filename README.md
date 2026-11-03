@@ -1,6 +1,6 @@
 # PatitoFix Landing Page
 
-![PatitoFix Hero Screenshot](./assets/hero_screenshot.png)
+![PatitoFix Hero Screenshot](./assets/NuevoLogo_Dark.png)
 
 ## Descripción
 
