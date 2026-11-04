@@ -85,32 +85,101 @@
     <div class="dash-persp">
       <div class="dash-3d" id="dash3d">
         <div class="dash-window" id="dash-tilt" data-tilt data-tilt-max="2" data-tilt-glare data-tilt-max-glare="0.08" data-tilt-scale="1.0">
-          <div class="dash-bar"><i></i><i></i><i></i><span class="dash-url">app.patitofix.com / dashboard</span></div>
-          <div class="dash-body">
-            <div class="role-switch" role="tablist" aria-label="Vista del panel">
-              <button class="role-btn active" data-role="dueno" role="tab">Dueño</button>
-              <button class="role-btn" data-role="mecanico" role="tab">Mecánico</button>
-              <button class="role-btn" data-role="recepcion" role="tab">Recepción</button>
+          
+          <!-- Barra superior simulada del navegador -->
+          <div class="dash-bar">
+            <div class="dash-traffic-lights"><i></i><i></i><i></i></div>
+            <span class="dash-url">app.patitofix.com / dashboard</span>
+            
+            <div class="dash-role-selector">
+              <span class="role-hint">Simular Rol:</span>
+              <div class="role-switch" role="tablist" aria-label="Vista del panel">
+                <button class="role-btn active" data-role="dueno" role="tab"><i data-lucide="shield-check" width="13"></i> Dueño / Admin</button>
+                <button class="role-btn" data-role="mecanico" role="tab"><i data-lucide="wrench" width="13"></i> Mecánico</button>
+              </div>
             </div>
-            <div class="kpis">
-              <div class="kpi"><small><i data-lucide="car" width="14"></i>Autos en curso</small><strong data-count="14">0</strong></div>
-              <div class="kpi"><small><i data-lucide="check-circle-2" width="14"></i>Órdenes finalizadas</small><strong data-count="8">0</strong></div>
-              <div class="kpi good"><small><i data-lucide="banknote" width="14"></i>Ingresos de hoy</small><strong><span data-count="482" data-prefix="$ " data-suffix=" mil">0</span></strong></div>
-              <div class="kpi warn"><small><i data-lucide="alert-triangle" width="14"></i>Alertas pendientes</small><strong data-count="2">0</strong></div>
-            </div>
-            <div class="widgets" id="widgets"></div>
+          </div>
+
+          <!-- Contenedor de la Aplicación PatitoFix (Sidebar + Main) -->
+          <div class="sim-app-container">
+            
+            <!-- Barra lateral auténtica de PatitoFix -->
+            <aside class="sim-sidebar">
+              <div class="sim-brand">
+                <img src="./assets/NuevoLogo_Dark.png" alt="PatitoFix" class="sim-logo-img" data-fallback="sim-logo-fb" />
+                <span class="logo-fallback" id="sim-logo-fb">Patito<b>Fix</b></span>
+              </div>
+              <nav class="sim-menu">
+                <div class="sim-item active"><i data-lucide="layout-dashboard" width="15"></i><span>Inicio</span></div>
+                <div class="sim-item"><i data-lucide="file-text" width="15"></i><span>Nuevo Ingreso</span></div>
+                <div class="sim-item"><i data-lucide="car" width="15"></i><span>Vehículos</span></div>
+                <div class="sim-item"><i data-lucide="history" width="15"></i><span>Órdenes</span></div>
+                <div class="sim-item"><i data-lucide="users" width="15"></i><span>Clientes</span></div>
+                <div class="sim-item"><i data-lucide="wrench" width="15"></i><span>Servicios</span></div>
+                <div class="sim-item"><i data-lucide="package-search" width="15"></i><span>Inventario</span><span class="sim-badge-pro">PRO</span></div>
+                <div class="sim-item"><i data-lucide="user-plus" width="15"></i><span>Mi Equipo</span><span class="sim-badge-pro">PRO</span></div>
+              </nav>
+              <div class="sim-sidebar-tenant">
+                <div class="sim-tenant-dot"></div>
+                <div class="sim-tenant-info">
+                  <strong>Taller Los Hermanos</strong>
+                  <span>Plan PRO · Activo</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Área de contenido principal -->
+            <main class="sim-main-view">
+              
+              <!-- Encabezado con saludo y perfil -->
+              <div class="sim-top-header">
+                <div class="sim-greeting">
+                  <h3 id="sim-greeting-title">¡Hola, Administrador!</h3>
+                  <p id="sim-greeting-sub">Así está el taller en este momento.</p>
+                </div>
+                
+                <div class="sim-user-badge">
+                  <div class="sim-avatar"><i data-lucide="user-circle" width="22"></i></div>
+                  <div class="sim-user-meta">
+                    <span class="sim-user-name" id="sim-user-name">Dueño del Taller</span>
+                    <span class="sim-user-role" id="sim-user-role">admin@patitofix.com</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Grilla de Estadísticas KPI con bordes coloreados oficiales -->
+              <div class="sim-kpis-grid" id="sim-kpis-grid"></div>
+
+              <!-- Espacio de trabajo dinámico según el rol -->
+              <div class="sim-content-area" id="widgets"></div>
+            </main>
+
           </div>
         </div>
-        <!-- Teléfono con checklist -->
+
+        <!-- Teléfono con aviso instantáneo al cliente y checklist 360° -->
         <div class="phone" aria-hidden="true">
           <div class="phone-notch"></div>
-          <h5>Checklist de recepción</h5>
-          <small>AB 123 CD · Ford Ranger</small>
-          <div class="ck on"><i data-lucide="check" width="13"></i>Exterior</div>
-          <div class="ck on"><i data-lucide="check" width="13"></i>Motor & Fluidos</div>
-          <div class="ck on"><i data-lucide="check" width="13"></i>Habitáculo</div>
-          <div class="ck"><i data-lucide="loader" width="13"></i>Tren rodante</div>
-          <div class="phone-btn">Firmar ingreso</div>
+          <div class="phone-clock"><span>09:41</span><i data-lucide="wifi" width="12"></i></div>
+          
+          <div class="phone-notif-box">
+            <div class="phone-notif-top">
+              <img src="./assets/PatitoFix_Icon.png" width="15" height="15" alt="" />
+              <span>PatitoFix · Aviso Automático</span>
+            </div>
+            <h5>🚗 ¡Tu vehículo ya está listo!</h5>
+            <p>Hola Martín, tu Ford Ranger (AB 123 CD) ya fue inspeccionada y está lista para retirar.</p>
+            <div class="phone-notif-tag">Email automático enviado ✓</div>
+          </div>
+
+          <div class="phone-ck-section">
+            <div class="phone-ck-title">Inspección de ingreso 360°</div>
+            <div class="ck on"><i data-lucide="check" width="13"></i>Exterior sin rayones</div>
+            <div class="ck on"><i data-lucide="check" width="13"></i>Motor y Fluidos OK</div>
+            <div class="ck on"><i data-lucide="check" width="13"></i>Habitáculo verificado</div>
+            <div class="ck on"><i data-lucide="check" width="13"></i>Tren rodante verificado</div>
+          </div>
+          <div class="phone-btn">Orden Finalizada ✓</div>
         </div>
       </div>
     </div>

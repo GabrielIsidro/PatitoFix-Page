@@ -158,37 +158,178 @@
   });
 
   /* ==========================================================================
-     Dashboard por rol
+     Dashboard interactivo por rol (fiel a PatitoFix)
      ========================================================================== */
-  const roles = {
-    dueno: [
-      { t: 'Facturación · últimos 5 días', wide: true, html: `<div class="bars">${[48,66,54,86,72].map(h=>`<i style="height:${h}%"></i>`).join('')}</div>` },
-      { t: 'Alertas pendientes', html: rows([['Aceite 10W40','Stock mínimo','o'],['Filtro de aire','Stock mínimo','o']]) },
-      { t: 'Órdenes en curso', wide: true, html: rows([['AB 123 CD · Frenos','En curso','y'],['AC 456 EF · Distribución','En curso','y'],['AA 789 GH · Service','Finalizada','g']]) },
-      { t: 'Próximos services', html: rows([['AB 123 CD','A 600 km','y'],['AD 321 BC','Vencido','o']]) },
-    ],
-    mecanico: [
-      { t: 'Mis órdenes de hoy', wide: true, html: rows([['#2041 · Cambio de pastillas','En curso','y'],['#2044 · Service 30.000 km','Pendiente','b'],['#2038 · Alineación','Finalizada','g']]) },
-      { t: 'Checklist de ingreso', html: rows([['Exterior','OK','g'],['Motor & Fluidos','OK','g'],['Tren rodante','Pendiente','y']]) },
-      { t: 'Repuestos usados', wide: true, html: rows([['Pastillas Brembo x1','Sumado a la orden','g'],['Aceite 10W40 x4','Sumado a la orden','g']]) },
-      { t: 'Acceso', html: rows([['Configuración contable','Sin acceso','o']]) },
-    ],
-    recepcion: [
-      { t: 'Ingresos de hoy', wide: true, html: rows([['09:00 · Rodríguez','AB 123 CD','g'],['10:30 · Fernández','AC 456 EF','b'],['15:00 · Gómez','AA 789 GH','b']]) },
-      { t: 'Presupuestos', html: rows([['#P-881','Borrador','y'],['#P-879','Enviado PDF','g']]) },
-      { t: 'Listos para retirar', wide: true, html: rows([['AD 321 BC','Email enviado','g'],['AE 654 DE','Email enviado','g']]) },
-      { t: 'Buscar por patente', html: rows([['Historial completo','1 clic','b']]) },
-    ],
+  const roleData = {
+    dueno: {
+      title: '¡Hola, Administrador!',
+      sub: 'Así está el taller en este momento.',
+      userName: 'Dueño del Taller',
+      userRole: 'admin@patitofix.com',
+      kpis: [
+        { type: 'amber', icon: 'wrench', title: 'En reparación', val: '5', sub: 'Autos con trabajo en curso' },
+        { type: 'green', icon: 'package-check', title: 'Listos para entregar', val: '3', sub: 'Esperando al cliente' },
+        { type: 'blue', icon: 'receipt', title: 'Facturación', val: '$ 1.45M', sub: 'Este mes consolidado' },
+        { type: 'purple', icon: 'file-edit', title: 'Nuevo Ingreso', val: '+ Orden', sub: 'Cotizador y checklist en 30s' }
+      ],
+      html: `
+        <div class="sim-panel fade-swap">
+          <div class="sim-panel-header">
+            <span class="sim-panel-title"><i data-lucide="wrench" width="14"></i> En reparación</span>
+            <span class="sim-badge-count">5 autos</span>
+          </div>
+          <div class="sim-order-card">
+            <div class="sim-order-top">
+              <span class="sim-vehicle-title">Ford Ranger 3.2 TDCi</span>
+              <span class="sim-plate-pill">AB 123 CD</span>
+            </div>
+            <div class="sim-order-job">Cambio de pastillas Brembo + Service programado 90.000 km</div>
+            <div class="sim-order-meta">
+              <span>Cliente: Martín Rodríguez · Mecánico: Carlos</span>
+              <span class="sim-status-tag amber">En Reparación</span>
+            </div>
+          </div>
+          <div class="sim-order-card">
+            <div class="sim-order-top">
+              <span class="sim-vehicle-title">Toyota Hilux 2.8 D-4D</span>
+              <span class="sim-plate-pill">AC 456 EF</span>
+            </div>
+            <div class="sim-order-job">Kit de distribución completo + Bomba de agua y tensores</div>
+            <div class="sim-order-meta">
+              <span>Cliente: Laura Fernández · Mecánico: Mariano</span>
+              <span class="sim-status-tag amber">En Reparación</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-panel fade-swap" style="animation-delay: 80ms">
+          <div class="sim-panel-header">
+            <span class="sim-panel-title"><i data-lucide="package-check" width="14"></i> Listos para entregar</span>
+            <span class="sim-badge-count">3 listos</span>
+          </div>
+          <div class="sim-order-card">
+            <div class="sim-order-top">
+              <span class="sim-vehicle-title">VW Gol Trend 1.6 MSI</span>
+              <span class="sim-plate-pill">AA 789 GH</span>
+            </div>
+            <div class="sim-order-job">Service completo 60.000 km + Rectificado de discos</div>
+            <div class="sim-order-meta">
+              <span>Facturado: <strong>$ 135.500</strong></span>
+              <span class="sim-status-tag green">Aviso Enviado ✓</span>
+            </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:4px;">
+              <button class="sim-btn-action green"><i data-lucide="check-circle" width="12"></i> Entregar Llaves</button>
+            </div>
+          </div>
+          <div class="sim-order-card">
+            <div class="sim-order-top">
+              <span class="sim-vehicle-title">Chevrolet Cruze 1.4 Turbo</span>
+              <span class="sim-plate-pill">AD 321 BC</span>
+            </div>
+            <div class="sim-order-job">Cambio de embrague + Líquido de frenos DOT4</div>
+            <div class="sim-order-meta">
+              <span>Facturado: <strong>$ 240.000</strong></span>
+              <span class="sim-status-tag green">Listo</span>
+            </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:4px;">
+              <button class="sim-btn-action green"><i data-lucide="check-circle" width="12"></i> Entregar Llaves</button>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    mecanico: {
+      title: '¡Hola, Carlos!',
+      sub: 'Esto es lo que tenés asignado hoy en el taller.',
+      userName: 'Carlos Gómez',
+      userRole: 'Mecánico Oficial · Foso 2',
+      kpis: [
+        { type: 'slate', icon: 'clipboard-list', title: 'Por iniciar', val: '2', sub: 'Esperando ingreso a foso' },
+        { type: 'amber', icon: 'wrench', title: 'En curso', val: '3', sub: 'Asignados a tu cargo' },
+        { type: 'green', icon: 'check-circle-2', title: 'Terminados', val: '4', sub: 'Completados esta semana' },
+        { type: 'red', icon: 'alert-triangle', title: 'Alertas service', val: '2', sub: 'Kilometraje crítico' }
+      ],
+      html: `
+        <div class="sim-panel fade-swap">
+          <div class="sim-panel-header">
+            <span class="sim-panel-title"><i data-lucide="hammer" width="14"></i> Mis Asignadas</span>
+            <div class="sim-filter-bar">
+              <button class="sim-filter-btn active">Solo mías (3)</button>
+              <button class="sim-filter-btn">Todo el taller (7)</button>
+            </div>
+          </div>
+          <div class="sim-order-card">
+            <div class="sim-order-top">
+              <span class="sim-vehicle-title">#2041 · Ford Ranger (AB 123 CD)</span>
+              <span class="sim-status-tag amber">En Reparación</span>
+            </div>
+            <div class="sim-order-job">Cambio de pastillas de freno Brembo + Purga de circuito</div>
+            <div class="sim-order-meta">
+              <span>Repuesto: <strong>Pastillas Brembo x1</strong></span>
+              <button class="sim-btn-action blue"><i data-lucide="check" width="12"></i> Finalizar y Notificar</button>
+            </div>
+          </div>
+          <div class="sim-order-card">
+            <div class="sim-order-top">
+              <span class="sim-vehicle-title">#2044 · Peugeot 208 (AF 912 JK)</span>
+              <span class="sim-status-tag blue">Por Iniciar</span>
+            </div>
+            <div class="sim-order-job">Service 30.000 km: Aceite 10W40 + Filtros originales</div>
+            <div class="sim-order-meta">
+              <span>Tiempo est.: 45 min · Bahía 1</span>
+              <button class="sim-btn-action blue"><i data-lucide="play" width="12"></i> Iniciar Trabajo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sim-panel fade-swap" style="animation-delay: 80ms">
+          <div class="sim-panel-header">
+            <span class="sim-panel-title"><i data-lucide="clipboard-check" width="14"></i> Checklist 360° en Elevador</span>
+            <span class="sim-badge-count">Ficha de ingreso</span>
+          </div>
+          <div class="ck on"><i data-lucide="check" width="13"></i> Exterior sin daños de carrocería</div>
+          <div class="ck on"><i data-lucide="check" width="13"></i> Motor: Aceite y filtros verificados</div>
+          <div class="ck on" style="border-color: rgba(245,158,11,.4);"><i data-lucide="alert-triangle" width="13" style="color:#f59e0b"></i> Tren delantero: Fuelles con desgaste leve</div>
+          <div class="ck on"><i data-lucide="check" width="13"></i> Batería y carga de alternador OK</div>
+          <div style="font-size:0.68rem; color:#94a3b8; margin-top:8px; line-height:1.4;">
+            🔒 <em>Registrado con firma digital y fotos adjuntas para protección contra reclamos.</em>
+          </div>
+        </div>
+      `
+    }
   };
-  function rows(list) {
-    return list.map(([a, b, c]) => `<div class="row"><span>${a}</span><span class="tag ${c}">${b}</span></div>`).join('');
-  }
+
+  const simGreetingTitle = $('#sim-greeting-title');
+  const simGreetingSub = $('#sim-greeting-sub');
+  const simUserName = $('#sim-user-name');
+  const simUserRole = $('#sim-user-role');
+  const simKpisGrid = $('#sim-kpis-grid');
   const widgets = $('#widgets');
+
   function renderRole(key) {
-    widgets.innerHTML = roles[key].map((w, i) =>
-      `<div class="widget fade-swap ${w.wide ? 'wide' : ''}" style="animation-delay:${i * 60}ms"><h4>${w.t}</h4>${w.html}</div>`).join('');
-    if (window.gsap) gsap.from($$('.bars i', widgets), { scaleY: 0, duration: .8, stagger: .06, ease: 'power3.out' });
+    const data = roleData[key] || roleData.dueno;
+    if (simGreetingTitle) simGreetingTitle.textContent = data.title;
+    if (simGreetingSub) simGreetingSub.textContent = data.sub;
+    if (simUserName) simUserName.textContent = data.userName;
+    if (simUserRole) simUserRole.textContent = data.userRole;
+
+    if (simKpisGrid) {
+      simKpisGrid.innerHTML = data.kpis.map(k => `
+        <div class="sim-kpi-card ${k.type}">
+          <div class="sim-kpi-title"><i data-lucide="${k.icon}" width="14"></i> ${k.title}</div>
+          <div class="sim-kpi-value">${k.val}</div>
+          <div class="sim-kpi-sub">${k.sub}</div>
+        </div>
+      `).join('');
+    }
+
+    if (widgets) {
+      widgets.innerHTML = data.html;
+    }
+
+    icons();
   }
+
   $$('.role-btn').forEach(b => b.addEventListener('click', () => {
     $$('.role-btn').forEach(x => x.classList.toggle('active', x === b));
     renderRole(b.dataset.role);
